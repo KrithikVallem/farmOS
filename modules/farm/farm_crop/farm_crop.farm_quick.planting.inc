@@ -401,6 +401,10 @@ function farm_crop_planting_quick_form_submit($form, &$form_state) {
     if (!empty($log_values['done'])) {
       $done = TRUE;
     }
+    // if event's timestamp is in the past, mark it as done
+    if (time() > $timestamp) {
+      $done = TRUE;
+    }
 
     // If there is a location, create a movement log.
     if (!empty($log_values['location'])) {
